@@ -1,4 +1,4 @@
-package configuracion;
+package lecturaJSON;
 
 public class pruebas {
     /**
