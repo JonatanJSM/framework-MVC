@@ -32,7 +32,7 @@ public class lectorJSON {
 
     private void obtenerContenidoTXT(){
         JSONParser jsonParser = new JSONParser();
-        try(FileReader reader = new FileReader("json2.txt")){
+        try(FileReader reader = new FileReader("json4.txt")){
             Object obj = jsonParser.parse(reader);
             objetosPrincipalenJSON = new JSONObject((Map) obj);
         }catch(FileNotFoundException e){
@@ -45,18 +45,26 @@ public class lectorJSON {
         }
     }
 
-    private void obtenerConfiguracionesMVC(String llave){
+    public void obtenerConfiguracionesMVC(String llave){
         inicializarMatrizConfiguracionMVC(llave);
         JSONArray configuraciones = (JSONArray) objetosPrincipalenJSON.get(llave);
         int i = 0;
         for(Object configuracionN: configuraciones){
             JSONObject auxAtributosObjectoJSON = (JSONObject) configuracionN;
             configuracionMVC[i][0] = (String) auxAtributosObjectoJSON.get("TransaccionName");
+            configuracionMVC[i][1] = (String) auxAtributosObjectoJSON.get("Control1");
+            configuracionMVC[i][2] = (String) auxAtributosObjectoJSON.get("Modelo2");
+            configuracionMVC[i][3] = (String) auxAtributosObjectoJSON.get("Funcion3");
 
-            String orderString = (String) auxAtributosObjectoJSON.get("order");
-            //int order = Integer.parseInt(orderString);
-            //datos[order-1][0]= orderString;
-            // datos[order-1][1]=(String) auxAtributosObjectoJSON.get("class");
+        }
+    }
+
+    public void imprimirConfiguraciones(){
+        for(int i=0;i<configuracionMVC.length;i++){
+            System.out.println("TransaaccionName "+configuracionMVC[i][0]);
+            System.out.println("Control "+configuracionMVC[i][1]);
+            System.out.println("Modelo "+configuracionMVC[i][2]);
+            System.out.println("Funcion "+configuracionMVC[i][3]);
         }
     }
 

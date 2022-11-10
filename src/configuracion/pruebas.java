@@ -9,7 +9,8 @@ public class pruebas {
        // lector.obtenerContenidoJSON();
        // lector.imprimir();
         lectorJSON lec = new lectorJSON();
-
+        lec.obtenerConfiguracionesMVC("confis");
+        lec.imprimirConfiguraciones();
 //        construccionJSON aa = new construccionJSON();
 //        aa.obtenerContenidoJSON();
     }
