@@ -1,7 +1,6 @@
 package ejemplo.controlador;
 
 import ejemplo.vista.vistaEjemplo1;
-import vistas.vista2;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

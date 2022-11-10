@@ -1,9 +1,9 @@
 package ejemplo.test;
 
-import controlador.controlVista;
+
 import ejemplo.controlador.controlVistaEjemplo1;
 import ejemplo.vista.vistaEjemplo1;
-import vistas.vista2;
+
 
 public class MainP {
     public static void main(String[] args) {
