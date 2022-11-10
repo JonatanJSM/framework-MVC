@@ -11,6 +11,7 @@ public class pruebas {
         lectorJSON lec = new lectorJSON();
         lec.obtenerConfiguracionesMVC("confis");
         lec.imprimirConfiguraciones();
+        lec.getTransacciones();
 //        construccionJSON aa = new construccionJSON();
 //        aa.obtenerContenidoJSON();
     }

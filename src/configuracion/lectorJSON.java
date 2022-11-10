@@ -7,6 +7,7 @@ import org.json.simple.parser.ParseException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,6 +21,16 @@ public class lectorJSON {
         guardarLlaves();
     }
 
+    public String[] getTransacciones(){
+        String transacciones[] = new String[configuracionMVC.length];
+        for(int i=0;i<configuracionMVC.length;i++){
+            transacciones[i] = configuracionMVC[i][0];
+        }
+        System.out.println(Arrays.toString(transacciones));
+        return transacciones;
+    }
+
+    //Estas llaves son los apartados: configuracionesMVC, Log4j, base de datos, pools
     private void guardarLlaves(){
         Set<String> keys = objetosPrincipalenJSON.keySet();
         llavesJSON = new String[keys.size()];
@@ -55,16 +66,7 @@ public class lectorJSON {
             configuracionMVC[i][1] = (String) auxAtributosObjectoJSON.get("Control1");
             configuracionMVC[i][2] = (String) auxAtributosObjectoJSON.get("Modelo2");
             configuracionMVC[i][3] = (String) auxAtributosObjectoJSON.get("Funcion3");
-
-        }
-    }
-
-    public void imprimirConfiguraciones(){
-        for(int i=0;i<configuracionMVC.length;i++){
-            System.out.println("TransaaccionName "+configuracionMVC[i][0]);
-            System.out.println("Control "+configuracionMVC[i][1]);
-            System.out.println("Modelo "+configuracionMVC[i][2]);
-            System.out.println("Funcion "+configuracionMVC[i][3]);
+            i++;
         }
     }
 
@@ -76,4 +78,14 @@ public class lectorJSON {
         }
         configuracionMVC = new String[i][4];
     }
+
+    public void imprimirConfiguraciones(){
+        for(int i=0;i<configuracionMVC.length;i++){
+            System.out.println("TransaaccionName "+configuracionMVC[i][0]);
+            System.out.println("Control "+configuracionMVC[i][1]);
+            System.out.println("Modelo "+configuracionMVC[i][2]);
+            System.out.println("Funcion "+configuracionMVC[i][3]+"\n");
+        }
+    }
+
 }
