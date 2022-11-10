@@ -23,8 +23,10 @@
 "class": "buenas"
 },
 {
-"order": "3",
-"class": "noches"
+"order1": "3",
+"class1": "darbaja",
+"order2": "2",
+"class2": "darsebaja"
 }
 ]
 }

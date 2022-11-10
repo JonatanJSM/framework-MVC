@@ -63,29 +63,33 @@ public class lector {
             System.out.print("Se imprimen ");
             Set<String> keys = auxAtributosObjectoJSON.keySet();
             for ( String key : keys ) {
-                System.out.println( key +"/n");
+                System.out.println( key +"\n");
+                String orderString = (String) auxAtributosObjectoJSON.get(key);
+                System.out.println("lo guardado es "+ orderString);
+                System.out.println("\n");
             }
 
-            System.out.println( "/n");
+            System.out.println( "\n");
             String orderString = (String) auxAtributosObjectoJSON.get("order");
-            int order = Integer.parseInt(orderString);
-            datos[order-1][0]= orderString;
-            datos[order-1][1]=(String) auxAtributosObjectoJSON.get("class");
+            //int order = Integer.parseInt(orderString);
+            //datos[order-1][0]= orderString;
+           // datos[order-1][1]=(String) auxAtributosObjectoJSON.get("class");
         }
         return datos;
     }
 
     public void imprimir(){
-        for(int i=0;i<contenidoJSOn.length;i++){
-            System.out.println("order"+contenidoJSOn[i][0]);//imprime lo guardado en order: ---
-            System.out.println("order"+contenidoJSOn[i][1]); //imprimer lo otro: ......
+        //for(int i=0;i<contenidoJSOn.length;i++){
+          //  System.out.println("order"+contenidoJSOn[i][0]);//imprime lo guardado en order: ---
+           // System.out.println("order"+contenidoJSOn[i][1]); //imprimer lo otro: ......
 
-        }
+       // }
 
         System.out.print("Se imprimen las llaves phases y hola");
         Set<String> keys = objetoPrincipalenJSON.keySet();
+        System.out.println("longitud"+keys.size());
         for ( String key : keys ) {
-            System.out.println( key +"/n");
+            System.out.println( key +"\n");
         }
 
         /*

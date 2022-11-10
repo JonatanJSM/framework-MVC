@@ -2,21 +2,15 @@
             "confis": [
                 {
                     "TransaccionName": "Login",
-                    "order": "1",
-                    "class": "votos.demo.controlador.LoginCtrl",
-                    "order": "3",
-                    "class": "votos.demo.modelo.Login",
-                    "order": "2",
-                    "class": "votos.demo.modelo.Login"
+                    "class1": "votos.demo.controlador.LoginCtrl",
+                    "class2": "votos.demo.modelo.Login",
+                    "class3": "votos.demo.modelo.Login"
                 },
               {
                     "TransaccionName": "Darsebaja",
-                    "order": "1",
-                    "class": "votos.demo.controlador.baja",
-                    "order": "3",
-                    "class": "votos.demo.modelo.baja",
-                    "order": "2",
-                    "class": "votos.demo.modelo.baja"
+                    "class1": "votos.demo.controlador.baja",
+                    "class2": "votos.demo.modelo.baja",
+                    "class3": "votos.demo.modelo.baja"
                 }
             ],
             "configuLOG4j": [
