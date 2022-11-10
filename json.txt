@@ -1,0 +1,16 @@
+{
+"phases": [
+{
+"order": "1",
+"class": "org.filter.Tokenizer"
+},
+{
+"order": "3",
+"class": "org.filter.Alfabetizador"
+},
+{
+"order": "2",
+"class": "org.filter.Combinador"
+}
+]
+}

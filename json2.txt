@@ -1,0 +1,30 @@
+{
+"phases": [
+{
+"order": "1",
+"class": "org.filter.Tokenizer"
+},
+{
+"order": "3",
+"class": "org.filter.Alfabetizador"
+},
+{
+"order": "2",
+"class": "org.filter.Combinador"
+}
+],
+  "hola": [
+{
+"order": "1",
+"class": "hola"
+},
+{
+"order": "2",
+"class": "buenas"
+},
+{
+"order": "3",
+"class": "noches"
+}
+]
+}
