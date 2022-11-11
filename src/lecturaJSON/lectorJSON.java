@@ -16,6 +16,10 @@ public class lectorJSON {
     private JSONObject objetosPrincipalenJSON;
     private String configuracionMVC[][];
 
+    public String[][] getConfiguracionMVC() {
+        return configuracionMVC;
+    }
+
     public lectorJSON(){
         obtenerContenidoTXT();
         guardarLlaves();

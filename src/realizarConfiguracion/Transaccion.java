@@ -10,13 +10,17 @@ public class Transaccion {
 
     private Object controlador;
     private Object modelo;
+    private String funcion;
+    private String modeloNombre;
 
-    public Transaccion(String modelo, String controlador){
+    public Transaccion(String controlador, String modelo, String funcion){
         crearModelo(modelo);
         crearControlador(controlador);
+        this.funcion = funcion;
+        this.modeloNombre = modelo;
     }
 
-    public void crearControlador(String control){
+    private void crearControlador(String control){
         try {
             Class controlador = Class.forName(control);
             Class parametros[] = new Class[1];
@@ -40,7 +44,7 @@ public class Transaccion {
         }
     }
 
-    public void crearModelo(String modelo){
+    private void crearModelo(String modelo){
         try {
             Class modeloDemo = Class.forName(modelo);
             Constructor modeloContructor = modeloDemo.getConstructor();
@@ -58,13 +62,13 @@ public class Transaccion {
         }
     }
 
-    public void execute(String modelo, Object texto) {
+    public void execute(Object texto) {
         Class modeloDemo = null;
         try {
-            modeloDemo = Class.forName(modelo);
+            modeloDemo = Class.forName(modeloNombre);
             Class parametros[] = new Class[1];
             parametros[0] = String.class;
-            Method meth = modeloDemo.getMethod("mostrarTexto",parametros);
+            Method meth = modeloDemo.getMethod(funcion,parametros);
 
             Object para[] = new Object[1];
             para[0] = texto;

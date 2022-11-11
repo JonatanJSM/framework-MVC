@@ -2,15 +2,15 @@
             "confis": [
                 {
                     "TransaccionName": "Login",
-                    "Control1": "votos.demo.controlador.LoginCtrl",
-                    "Modelo2": "votos.demo.modelo.Login",
-                    "Funcion3": "votos.demo.modelo.Login"
+                    "Control1": "ejemplo.controlador.demoControlador",
+                    "Modelo2": "ejemplo.modelo.modeloVistaEjemplo1",
+                    "Funcion3": "mostrarTexto"
                 },
               {
                     "TransaccionName": "Darsebaja",
-                    "Control1": "votos.demo.controlador.baja",
-                    "Modelo2": "votos.demo.modelo.baja",
-                    "Funcion3": "votos.demo.modelo.baja"
+                    "Control1": "ejemplo.controlador.demoControlador",
+                    "Modelo2": "ejemplo.modelo.modeloVistaEjemplo1",
+                    "Funcion3": "mostrarTexto"
                 }
             ],
             "configuLOG4j": [
