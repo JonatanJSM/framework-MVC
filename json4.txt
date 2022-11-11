@@ -1,5 +1,5 @@
 {
-            "confis": [
+            "configTransac": [
                 {
                     "TransaccionName": "Login",
                     "Control1": "ejemplo.controlador.demoControlador",
@@ -13,9 +13,11 @@
                     "Funcion3": "mostrarTexto"
                 }
             ],
-            "configuLOG4j": [
+            "configLOG4j": [
                 {
                     "hola": "que tal"
                 }
             ]
+            "configPool":[]
+            "configBD":[]
 }

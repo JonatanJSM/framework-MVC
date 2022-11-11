@@ -40,8 +40,31 @@ public class lectorJSON {
         llavesJSON = new String[keys.size()];
         int i = 0;
         for ( String key : keys) {
-            llavesJSON[0] = (String) key;
+            llavesJSON[i] = (String) key;
             i++;
+        }
+        try {
+            verificarLlaves();
+        }catch(MissingKeyException e){
+            System.out.println("El archivo de configuración está incompleto o tiene alguna configuración mal escrita");
+            System.exit(1);
+        }
+    }
+
+    private void verificarLlaves() throws MissingKeyException {
+        int llavesVerificadas=0;
+        String[] defaultKeys = {"configTransac", "configLOG4j","configPool", "configBD"};
+        for(String key : defaultKeys) {
+            for (String llave : llavesJSON) {
+                if(key.equals(llave)){
+                    llavesVerificadas++;
+                    break;
+                }
+            }
+        }
+
+        if(llavesVerificadas!=4){
+            throw new MissingKeyException();
         }
     }
 
@@ -50,13 +73,17 @@ public class lectorJSON {
         try(FileReader reader = new FileReader("json4.txt")){
             Object obj = jsonParser.parse(reader);
             objetosPrincipalenJSON = new JSONObject((Map) obj);
+            System.out.println(obj);
         }catch(FileNotFoundException e){
             System.out.println("No se encontró el archivo");
+            System.exit(1);
         }catch(IOException e){
             System.out.println(" ");
+            System.exit(1);
         }
         catch(ParseException e){
             System.out.println("Algún error en el formato JSON");
+            System.exit(1);
         }
     }
 
