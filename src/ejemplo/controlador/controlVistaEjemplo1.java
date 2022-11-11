@@ -18,11 +18,16 @@ public class controlVistaEjemplo1 implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(prueba.getEnviarButton() == e.getSource()){
-            System.out.println(prueba.getTextField1().getText());
-            Framework frame = new Framework();
-            Transaccion t = frame.getTransaccion("Login");
-            t.execute(prueba.getTextField1().getText());
+        try{
+            if(prueba.getEnviarButton() == e.getSource()){
+                System.out.println(prueba.getTextField1().getText());
+                Framework frame = new Framework();
+                Transaccion t = frame.getTransaccion("Login");
+                t.execute(prueba.getTextField1().getText());
+            }
+        }catch (NullPointerException exc){
+            System.out.println("La transacción es inexistente");
         }
+
     }
 }
