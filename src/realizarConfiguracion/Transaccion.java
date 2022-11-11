@@ -32,15 +32,15 @@ public class Transaccion {
             this.controlador = contructorControlador.newInstance(parametrosDos);
 
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("La clase controladora no fue encontrada");
         } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
+            System.out.println("La función del controlador no fue encontrada");
         } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error en la función constructora: "+e.getCause());
         } catch (InstantiationException e) {
-            throw new RuntimeException(e);
+            System.out.println("No se pudo crear una instancia de la clase controladora");
         } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
+            System.out.println("No se pudo acceder a la clase o a la función");
         }
     }
 
@@ -50,15 +50,15 @@ public class Transaccion {
             Constructor modeloContructor = modeloDemo.getConstructor();
             this.modelo = modeloContructor.newInstance();
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("La clase modelo no fue encontrada");
         } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
+            System.out.println("La función del modelo no fue encontrada");
         } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error en la función constructora: "+e.getCause());
         } catch (InstantiationException e) {
-            throw new RuntimeException(e);
+            System.out.println("No se pudo crear una instancia de la clase modelo");
         } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
+            System.out.println("No se pudo acceder a la clase o a la función");
         }
     }
 
@@ -75,13 +75,13 @@ public class Transaccion {
             modeloVistaEjemplo1 mo = new modeloVistaEjemplo1();
             meth.invoke(this.modelo,para);
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("No se pudo ejecutar la transacción:  No se encontró la clase");
         } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
+            System.out.println("No se pudo ejecutar la transacción:  No se encontró la función");
         } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
+            System.out.println("No se pudo ejecutar la transacción: Error en la función: "+e.getCause());
         } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
+            System.out.println("No se pudo ejecutar la transacción: No se pudo acceder a la clase o a la función");
         }
     }
 
