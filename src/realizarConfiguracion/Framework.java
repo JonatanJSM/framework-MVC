@@ -10,7 +10,7 @@ public class Framework {
     String configuracionMVC[][];
 
     public Framework(){
-        lector.obtenerConfiguracionesMVC("configTransac");
+        lector.obtenerConfiguracionesMVC();
         configuracionMVC = lector.getConfiguracionMVC();
         generarTransacciones();
     }

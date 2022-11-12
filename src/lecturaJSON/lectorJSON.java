@@ -87,9 +87,9 @@ public class lectorJSON {
         }
     }
 
-    public void obtenerConfiguracionesMVC(String llave){
-        inicializarMatrizConfiguracionMVC(llave);
-        JSONArray configuraciones = (JSONArray) objetosPrincipalenJSON.get(llave);
+    public void obtenerConfiguracionesMVC(){
+        inicializarMatrizConfiguracionMVC("configTransac");
+        JSONArray configuraciones = (JSONArray) objetosPrincipalenJSON.get("configTransac");
         int i = 0;
         for(Object configuracionN: configuraciones){
             JSONObject auxAtributosObjectoJSON = (JSONObject) configuracionN;
