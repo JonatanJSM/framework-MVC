@@ -1,0 +1,23 @@
+{
+            "configTransac": [
+                {
+                    "TransaccionName": "Login",
+                    "Control1": "ejemplo.controlador.demoControlador",
+                    "Modelo2": "ejemplo.modelo.modeloVistaEjemplo1",
+                    "Funcion3": "mostrarTexto"
+                },
+              {
+                    "TransaccionName": "Darsebaja",
+                    "Control1": "ejemplo.controlador.demoControlador",
+                    "Modelo2": "ejemplo.modelo.modeloVistaEjemplo1",
+                    "Funcion3": "mostrarTexto"
+                }
+            ],
+            "configLOG4j": [
+                {
+                    "hola": "que tal"
+                }
+            ]
+            "configPool":[]
+            "configBD":[]
+}

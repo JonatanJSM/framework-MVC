@@ -1,14 +1,13 @@
-package vistas;
+package ejemplo.vista;
 
 import javax.swing.*;
-import java.awt.*;
 
-public class vista2 extends JFrame{
+public class vistaEjemplo1 extends JFrame{
     private JButton enviarButton;
     private JTextField textField1;
     private JPanel mainPanel;
 
-    public vista2(){
+    public vistaEjemplo1(){
         setContentPane(mainPanel);
         setTitle("Hola");
         setSize(450,300);
