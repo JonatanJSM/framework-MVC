@@ -73,7 +73,7 @@ public class lectorJSON {
         try(FileReader reader = new FileReader("json4.txt")){
             Object obj = jsonParser.parse(reader);
             objetosPrincipalenJSON = new JSONObject((Map) obj);
-            System.out.println(obj);
+            //System.out.println(obj);
         }catch(FileNotFoundException e){
             System.out.println("No se encontró el archivo");
             System.exit(1);
@@ -87,9 +87,9 @@ public class lectorJSON {
         }
     }
 
-    public void obtenerConfiguracionesMVC(String llave){
-        inicializarMatrizConfiguracionMVC(llave);
-        JSONArray configuraciones = (JSONArray) objetosPrincipalenJSON.get(llave);
+    public void obtenerConfiguracionesMVC(){
+        inicializarMatrizConfiguracionMVC("configTransac");
+        JSONArray configuraciones = (JSONArray) objetosPrincipalenJSON.get("configTransac");
         int i = 0;
         for(Object configuracionN: configuraciones){
             JSONObject auxAtributosObjectoJSON = (JSONObject) configuracionN;
