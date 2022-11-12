@@ -73,7 +73,7 @@ public class lectorJSON {
         try(FileReader reader = new FileReader("json4.txt")){
             Object obj = jsonParser.parse(reader);
             objetosPrincipalenJSON = new JSONObject((Map) obj);
-            System.out.println(obj);
+            //System.out.println(obj);
         }catch(FileNotFoundException e){
             System.out.println("No se encontró el archivo");
             System.exit(1);
