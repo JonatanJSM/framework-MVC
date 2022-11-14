@@ -98,7 +98,7 @@ public class lectorJSON {
             configuracionMVC[i][2] = (String) auxAtributosObjectoJSON.get("Modelo2");
             configuracionMVC[i][3] = (String) auxAtributosObjectoJSON.get("Funcion3");
             i++;
-        }
+        }//agregar execep
     }
 
     private void inicializarMatrizConfiguracionMVC(String llave){

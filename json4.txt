@@ -1,7 +1,8 @@
 {
             "configTransac": [
                 {
-                    "TransaccionName": "Login",
+                    "TransaccionName": "
+                    ",
                     "Control1": "ejemplo.controlador.demoControlador",
                     "Modelo2": "ejemplo.modelo.modeloVistaEjemplo1",
                     "Funcion3": "mostrarTexto"

@@ -2,7 +2,7 @@ package ejemplo.modelo;
 
 import javax.swing.*;
 
-public class modeloVistaEjemplo1 {
+public class modeloVistaEjemplo1 extends Modelo{
     public modeloVistaEjemplo1(){
 
     }
