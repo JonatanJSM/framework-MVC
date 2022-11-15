@@ -1,5 +1,6 @@
 package parseos;
 
+import lecturaJSON.MissingKeyException;
 import lecturaJSON.lectorJSON;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -12,6 +13,11 @@ public class MVCparser {
     public MVCparser(){
         lectorJSON lector = new lectorJSON();
         objetosPrincipalenJSON = lector.getObjetosPrincipalenJSON();
+        try {
+            validarAtributosTransaccion();
+        } catch (MissiongAttributeException e) {
+            System.out.println(e.getMessage());
+        }
         obtenerConfiguracionesMVC();
     }
 
@@ -36,6 +42,23 @@ public class MVCparser {
             configuracionMVC[i][3] = (String) auxAtributosObjectoJSON.get("Funcion3");
             i++;
         }
+    }
+
+    private void validarAtributosTransaccion() throws MissiongAttributeException{
+        JSONArray configuraciones = (JSONArray) objetosPrincipalenJSON.get("configTransac");
+        int i = 0;
+        for (Object transaccion: configuraciones) {
+            JSONObject auxTransaccion = (JSONObject) transaccion;
+            if(!verificarAtributosTransacciones(auxTransaccion)){
+                i++;
+                throw new MissiongAttributeException(i);
+            }
+            i++;
+        }
+    }
+
+    private boolean verificarAtributosTransacciones(JSONObject transaccion){
+        return !(!transaccion.containsKey("TransaccionName") || !transaccion.containsKey("Control1") || !transaccion.containsKey("Modelo2") || !transaccion.containsKey("Funcion3"));
     }
 
     public void imprimirConfiguraciones(){

@@ -6,10 +6,11 @@ import java.util.Map;
 
 public class Framework {
     private Map<String, Transaccion> listaTransacciones = new HashMap<String, Transaccion>();
-    MVCparser lector = new MVCparser();
+    MVCparser lector;
     String configuracionMVC[][];
 
     public Framework(){
+        lector = new MVCparser();
         lector.obtenerConfiguracionesMVC();
         configuracionMVC = lector.getConfiguracionMVC();
         generarTransacciones();
