@@ -1,5 +1,6 @@
 package frameWork;
 
+import MVC.Modelo;
 import ejemplo.modelo.modeloVistaEjemplo1;
 
 import java.lang.reflect.Constructor;
@@ -24,11 +25,11 @@ public class Transaccion {
         try {
             Class controlador = Class.forName(control);
             Class parametros[] = new Class[1];
-            parametros[0] = Object.class;
+            parametros[0] = Modelo.class;
             Constructor contructorControlador = controlador.getConstructor(parametros);
 
             Object parametrosDos[] = new Object[1];
-            parametrosDos[0] = modelo;
+            parametrosDos[0] = (Modelo)modelo;
             this.controlador = contructorControlador.newInstance(parametrosDos);
 
         } catch (ClassNotFoundException e) {
