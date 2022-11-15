@@ -1,6 +1,5 @@
 package parseos;
 
-import lecturaJSON.MissingKeyException;
 import lecturaJSON.lectorJSON;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,7 +14,7 @@ public class MVCparser {
         objetosPrincipalenJSON = lector.getObjetosPrincipalenJSON();
         try {
             validarAtributosTransaccion();
-        } catch (MissiongAttributeException e) {
+        } catch (MissingAttributeException e) {
             System.out.println(e.getMessage());
         }
         obtenerConfiguracionesMVC();
@@ -44,14 +43,14 @@ public class MVCparser {
         }
     }
 
-    private void validarAtributosTransaccion() throws MissiongAttributeException{
+    private void validarAtributosTransaccion() throws MissingAttributeException {
         JSONArray configuraciones = (JSONArray) objetosPrincipalenJSON.get("configTransac");
         int i = 0;
         for (Object transaccion: configuraciones) {
             JSONObject auxTransaccion = (JSONObject) transaccion;
             if(!verificarAtributosTransacciones(auxTransaccion)){
                 i++;
-                throw new MissiongAttributeException(i);
+                throw new MissingAttributeException("Algún atributo de la transacción "+i+" está incorrecto");
             }
             i++;
         }
@@ -82,4 +81,5 @@ public class MVCparser {
     public String[][] getConfiguracionMVC() {
         return configuracionMVC;
     }
+
 }

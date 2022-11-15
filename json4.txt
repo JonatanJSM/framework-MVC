@@ -15,7 +15,8 @@
             ],
             "configLOG4j": [
                 {
-                    "hola": "que tal"
+                    "Active": "True"
+                    "FileSize": "300"
                 }
             ]
             "configPool":[]

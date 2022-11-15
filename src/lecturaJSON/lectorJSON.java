@@ -35,7 +35,6 @@ public class lectorJSON {
             verificarLlaves();
         }catch(MissingKeyException e){
             System.out.println("El archivo de configuración está incompleto o tiene alguna configuración mal escrita");
-            System.exit(1);
         }
     }
 
