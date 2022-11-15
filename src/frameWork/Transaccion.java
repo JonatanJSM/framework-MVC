@@ -13,12 +13,14 @@ public class Transaccion {
     private Object modelo;
     private String funcion;
     private String modeloNombre;
+    private String controlNombre;
 
     public Transaccion(String controlador, String modelo, String funcion){
         crearModelo(modelo);
         crearControlador(controlador);
         this.funcion = funcion;
         this.modeloNombre = modelo;
+        this.controlNombre = controlador;
     }
 
     private void crearControlador(String control){
@@ -63,18 +65,22 @@ public class Transaccion {
         }
     }
 
-    public void execute(Object texto) {
+    //Aquí se ejecuta el control
+    public void execute(String texto) {
         Class modeloDemo = null;
         try {
-            modeloDemo = Class.forName(modeloNombre);
-            Class parametros[] = new Class[1];
+            modeloDemo = Class.forName(controlNombre);
+            Class parametros[] = new Class[2];
             parametros[0] = String.class;
-            Method meth = modeloDemo.getMethod(funcion,parametros);
+            parametros[1] = Object.class;
+            Method meth = modeloDemo.getMethod("execute",parametros);
 
-            Object para[] = new Object[1];
-            para[0] = texto;
+
+            Object para[] = new Object[2];
+            para[0] = funcion;
+            para[1] = texto;
             modeloVistaEjemplo1 mo = new modeloVistaEjemplo1();
-            meth.invoke(this.modelo,para);
+            meth.invoke(this.controlador,para);
         } catch (ClassNotFoundException e) {
             System.out.println("No se pudo ejecutar la transacción:  No se encontró la clase");
         } catch (NoSuchMethodException e) {

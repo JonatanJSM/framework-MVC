@@ -4,7 +4,7 @@
                     "TransaccionName": "Login",
                     "Control1": "ejemplo.controlador.demoControlador",
                     "Modelo2": "ejemplo.modelo.modeloVistaEjemplo1",
-                    "Funcion3": "mostrarTexto"
+                    "Funcion3": "mostrarTex"
                 },
               {
                     "TransaccionName": "Darsebaja",
