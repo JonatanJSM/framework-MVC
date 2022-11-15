@@ -1,8 +1,8 @@
 package ejemplo.controlador;
 
 import ejemplo.vista.vistaEjemplo1;
-import realizarConfiguracion.Framework;
-import realizarConfiguracion.Transaccion;
+import frameWork.Framework;
+import frameWork.Transaccion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

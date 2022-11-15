@@ -1,12 +1,12 @@
-package realizarConfiguracion;
+package frameWork;
 
-import lecturaJSON.lectorJSON;
+import parseos.MVCparser;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Framework {
     private Map<String, Transaccion> listaTransacciones = new HashMap<String, Transaccion>();
-    lectorJSON lector = new lectorJSON();
+    MVCparser lector = new MVCparser();
     String configuracionMVC[][];
 
     public Framework(){

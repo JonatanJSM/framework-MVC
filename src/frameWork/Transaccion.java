@@ -1,4 +1,4 @@
-package realizarConfiguracion;
+package frameWork;
 
 import ejemplo.modelo.modeloVistaEjemplo1;
 
