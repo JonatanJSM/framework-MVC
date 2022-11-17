@@ -19,7 +19,6 @@ public class log4Parser {
         } catch (MissingAttributeException e) {
             System.out.println("Algún atributo está mal escrito o no se existe");
         }
-        System.out.println(configLog4J);
     }
 
     private void verificarAtributos() throws MissingAttributeException {
@@ -42,7 +41,7 @@ public class log4Parser {
         }
     }
 
-    public static void main(String[] args) {
-        log4Parser parser = new log4Parser();
+    public String[] getConfiguracion(){
+        return configuracion;
     }
 }
