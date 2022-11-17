@@ -1,5 +1,6 @@
 package frameWork;
 
+import log4J.log4JManager;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import parseos.MVCparser;
@@ -9,28 +10,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Framework {
-    static Logger log = Logger.getLogger(Framework.class);
+    static Logger log;
     private Map<String, Transaccion> listaTransacciones = new HashMap<String, Transaccion>();
     MVCparser lector;
-    //private log4Parser logConfigurator;
+    private log4Parser logConfigurator;
     String configuracionMVC[][];
 
     public Framework(){
-        //logConfigurator = new log4Parser();
-        //iniciarLogger();
+        logConfigurator = new log4Parser();
+        iniciarLogger();
         log.info("Se inició el logger");
         lector = new MVCparser();
         lector.obtenerConfiguracionesMVC();
+        log.info("Se obtuvo la configuración MVC");
         configuracionMVC = lector.getConfiguracionMVC();
         generarTransacciones();
+        log.info("Se generaron las transacciones");
     }
 
-    /*public void iniciarLogger(){
+    public void iniciarLogger(){
         String[] configuracion = logConfigurator.getConfiguracion();
         if(configuracion[0].equals("False")){
+            log=Logger.getLogger(Framework.class);
             Logger.getRootLogger().setLevel(Level.OFF);
+        }else{
+            log = log4JManager.getLogger(Framework.class,configuracion[1]);
         }
-    }*/
+    }
 
     public void generarTransacciones(){
         for (int i= 0; i<configuracionMVC.length;i++){
@@ -42,7 +48,4 @@ public class Framework {
         return listaTransacciones.get(nombreTransaccion);
     }
 
-    public static void main(String[] args) {
-        Framework f = new Framework();
-    }
 }

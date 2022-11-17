@@ -1,11 +1,13 @@
 package MVC;
 
 import ejemplo.modelo.modeloVistaEjemplo1;
+import org.apache.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class Controlador {
+    static Logger log;
     public Modelo modelo;
 
     public Controlador(Modelo modelo){

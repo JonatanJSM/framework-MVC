@@ -2,6 +2,7 @@ package frameWork;
 
 import MVC.Modelo;
 import ejemplo.modelo.modeloVistaEjemplo1;
+import org.apache.log4j.Logger;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -34,6 +35,7 @@ public class Transaccion {
             parametrosDos[0] = (Modelo)modelo;
             this.controlador = contructorControlador.newInstance(parametrosDos);
 
+
         } catch (ClassNotFoundException e) {
             System.out.println("La clase controladora no fue encontrada");
         } catch (NoSuchMethodException e) {
@@ -52,6 +54,7 @@ public class Transaccion {
             Class modeloDemo = Class.forName(modelo);
             Constructor modeloContructor = modeloDemo.getConstructor();
             this.modelo = modeloContructor.newInstance();
+
         } catch (ClassNotFoundException e) {
             System.out.println("La clase modelo no fue encontrada");
         } catch (NoSuchMethodException e) {

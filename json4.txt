@@ -16,7 +16,7 @@
             "configLOG4j": [
                 {
                     "Active": "True"
-                    "FileSize": "300"
+                    "FileSize": "1KB"
                 }
             ]
             "configPool":[]

@@ -26,7 +26,7 @@ public class controlVistaEjemplo1 implements ActionListener {
                 t.execute(prueba.getTextField1().getText());
             }
         }catch (NullPointerException exc){
-            System.out.println("La transacción es inexistente");
+            System.out.println("La transacción es inexistente"+exc.getMessage());
         }
 
     }

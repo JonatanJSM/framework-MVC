@@ -1,22 +1,15 @@
 package ejemplo.test;
 
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
-import org.apache.log4j.helpers.Loader;
-
-import java.net.URL;
-
+import ejemplo.controlador.controlVistaEjemplo1;
+import ejemplo.vista.vistaEjemplo1;
 
 public class MainP {
-    static Logger log;
 
     public static void main(String[] args) {
-        log= Logger.getLogger(MainP.class);
-        log.info("Hola");
-        /*vistaEjemplo1 vistaPrueba = new vistaEjemplo1();
+        vistaEjemplo1 vistaPrueba = new vistaEjemplo1();
         controlVistaEjemplo1 controlador = new controlVistaEjemplo1(vistaPrueba);
 
-        vistaPrueba.setVisible(true);*/
+        vistaPrueba.setVisible(true);
     }
 }
