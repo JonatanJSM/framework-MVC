@@ -48,4 +48,8 @@ public class Framework {
         return listaTransacciones.get(nombreTransaccion);
     }
 
+    public Logger getLogger(){
+        return log;
+    }
+
 }
