@@ -1,11 +1,12 @@
 package ejemplo.controlador;
 
-import ejemplo.modelo.modeloVistaEjemplo1;
+import MVC.Controlador;
+import MVC.Modelo;
 
-public class demoControlador {
-    public Object modelo;
-
-    public demoControlador(Object modelo){
-        this.modelo = modelo;
+public class demoControlador extends Controlador {
+    public demoControlador(Modelo modelo){
+        super(modelo);
     }
+
+
 }

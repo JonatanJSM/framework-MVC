@@ -1,5 +1,4 @@
 package lecturaJSON;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -7,31 +6,20 @@ import org.json.simple.parser.ParseException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
 
 public class lectorJSON {
     private String llavesJSON[];
     private JSONObject objetosPrincipalenJSON;
-    private String configuracionMVC[][];
-
-    public String[][] getConfiguracionMVC() {
-        return configuracionMVC;
-    }
 
     public lectorJSON(){
         obtenerContenidoTXT();
         guardarLlaves();
     }
 
-    public String[] getTransacciones(){
-        String transacciones[] = new String[configuracionMVC.length];
-        for(int i=0;i<configuracionMVC.length;i++){
-            transacciones[i] = configuracionMVC[i][0];
-        }
-        System.out.println(Arrays.toString(transacciones));
-        return transacciones;
+    public JSONObject getObjetosPrincipalenJSON(){
+        return objetosPrincipalenJSON;
     }
 
     //Estas llaves son los apartados: configuracionesMVC, Log4j, base de datos, pools
@@ -47,7 +35,6 @@ public class lectorJSON {
             verificarLlaves();
         }catch(MissingKeyException e){
             System.out.println("El archivo de configuración está incompleto o tiene alguna configuración mal escrita");
-            System.exit(1);
         }
     }
 
@@ -86,37 +73,4 @@ public class lectorJSON {
             System.exit(1);
         }
     }
-
-    public void obtenerConfiguracionesMVC(){
-        inicializarMatrizConfiguracionMVC("configTransac");
-        JSONArray configuraciones = (JSONArray) objetosPrincipalenJSON.get("configTransac");
-        int i = 0;
-        for(Object configuracionN: configuraciones){
-            JSONObject auxAtributosObjectoJSON = (JSONObject) configuracionN;
-            configuracionMVC[i][0] = (String) auxAtributosObjectoJSON.get("TransaccionName");
-            configuracionMVC[i][1] = (String) auxAtributosObjectoJSON.get("Control1");
-            configuracionMVC[i][2] = (String) auxAtributosObjectoJSON.get("Modelo2");
-            configuracionMVC[i][3] = (String) auxAtributosObjectoJSON.get("Funcion3");
-            i++;
-        }
-    }
-
-    private void inicializarMatrizConfiguracionMVC(String llave){
-        int i=0;
-        JSONArray arr = (JSONArray) objetosPrincipalenJSON.get(llave);
-        for(Object arreglo: arr){
-            i++;
-        }
-        configuracionMVC = new String[i][4];
-    }
-
-    public void imprimirConfiguraciones(){
-        for(int i=0;i<configuracionMVC.length;i++){
-            System.out.println("TransaaccionName "+configuracionMVC[i][0]);
-            System.out.println("Control "+configuracionMVC[i][1]);
-            System.out.println("Modelo "+configuracionMVC[i][2]);
-            System.out.println("Funcion "+configuracionMVC[i][3]+"\n");
-        }
-    }
-
 }
