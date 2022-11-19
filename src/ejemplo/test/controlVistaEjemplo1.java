@@ -1,4 +1,4 @@
-package ejemplo.controlador;
+package ejemplo.test;
 
 import ejemplo.vista.vistaEjemplo1;
 import frameWork.Framework;

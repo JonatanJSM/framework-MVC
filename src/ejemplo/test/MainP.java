@@ -1,7 +1,6 @@
 package ejemplo.test;
 
 
-import ejemplo.controlador.controlVistaEjemplo1;
 import ejemplo.vista.vistaEjemplo1;
 
 public class MainP {
