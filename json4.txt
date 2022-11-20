@@ -19,6 +19,12 @@
                     "FileSize": "1KB"
                 }
             ]
+            "configBD": [
+                {
+                    "urlDB": "baseDeDatos",
+                    "usuarioDB": "usuario1",
+                    "contrasenaDB": "1234"
+                }
+            ]
             "configPool":[]
-            "configBD":[]
 }
