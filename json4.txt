@@ -21,10 +21,20 @@
             ]
             "configBD": [
                 {
-                    "urlDB": "baseDeDatos",
+                    "urlDB": "baseDeDatos1",
                     "usuarioDB": "usuario1",
                     "contrasenaDB": "1234"
                 }
+                {
+                    "urlDB": "baseDeDatos2",
+                    "usuarioDB": "usuario2",
+                    "contrasenaDB": "12345"
+                }
             ]
-            "configPool":[]
+            "configPool":[
+                {
+                    "poolSize": "4",
+                    "connectionDB": "baseDeDatos1"
+                }
+            ]
 }
