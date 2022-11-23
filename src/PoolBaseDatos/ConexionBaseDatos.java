@@ -31,6 +31,8 @@ public class ConexionBaseDatos {
         try {
             connection.close();
             conexionActiva = false;
+            enUso = false;
+            System.out.println("Se cerró la conexion "+ this.claveBaseDatos);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -41,12 +43,21 @@ public class ConexionBaseDatos {
         return connection;
     }
 
+    public Connection getConnectionTest() {
+        return connection;
+    }
+
     public boolean isConexionActiva() {
         return conexionActiva;
     }
 
     public boolean isEnUso() {
         return enUso;
+    }
+
+    public void dejarEnUso(){
+        System.out.println("Ya no se una la "+claveBaseDatos);
+        enUso = false;
     }
 
     public int getClaveBaseDatos() {
@@ -59,7 +70,4 @@ public class ConexionBaseDatos {
         return this.claveBaseDatos == conexionBaseDatos.getClaveBaseDatos();
     }
 
-    public boolean isNull(){
-        return false;
-    }
 }
