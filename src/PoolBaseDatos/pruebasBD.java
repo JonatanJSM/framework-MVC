@@ -47,5 +47,17 @@ public class pruebasBD {
         //Connection conection6 = pool.getConexion();
 
         //System.out.println("En uso:"+pool.getNumeroConexionesEnUso()+ " Numero de conex:"+pool.getNumeroConexiones());
+
+        Statement st;
+        ResultSet rs;
+        try {
+            st = conection3.createStatement();
+            rs = st.executeQuery("select * from arquitectura");
+            while(rs.next()){
+                System.out.println(rs.getString("Cadena"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
