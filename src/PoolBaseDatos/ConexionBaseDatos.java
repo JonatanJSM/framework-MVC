@@ -56,7 +56,7 @@ public class ConexionBaseDatos {
     }
 
     public void dejarEnUso(){
-        System.out.println("Ya no se una la "+claveBaseDatos);
+        System.out.println("Ya no se usa la "+claveBaseDatos);
         enUso = false;
     }
 

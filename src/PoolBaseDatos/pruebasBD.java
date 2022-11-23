@@ -19,35 +19,33 @@ public class pruebasBD {
 
         Pool pool = new Pool(tamanio,base);
 
+        Connection conection0 = pool.getConexion();
         Connection conection1 = pool.getConexion();
         Connection conection2 = pool.getConexion();
         Connection conection3 = pool.getConexion();
-        Connection conection4 = pool.getConexion();
+
+        //Cerrar conexion
+        pool.cerrarConexion(conection2);
+        pool.cerrarConexion(conection0);
+
+        //Dejar de usar conexion
+        pool.dejarConexion(conection1);
+        //pool.dejarConexion(conection0);
+
+        // Se utiliza la que se dejó de usar
+        Connection conection5 = pool.getConexion();
+        //Connection conection6 = pool.getConexion();
+        //Connection conection7 = pool.getConexion();
 
 
-        // Pedir más de las que se definen
-        // Connection conection5 = pool.getConexion();
 
-        Statement st;
-        ResultSet rs;
-        try {
-            st = conection4.createStatement();
-            rs = st.executeQuery("select * from arquitectura");
-            while(rs.next()){
-                System.out.println(rs.getString("Cadena"));
-            }
-            //Se cierra la conexion 4
-            pool.cerrarConexion(conection4);
+        //Se cierran todas
+        //pool.cerrarConexion(conection1);
+        //pool.cerrarConexion(conection3);
+        //pool.cerrarConexion(conection0);
+        //System.out.println("En uso:"+pool.getNumeroConexionesEnUso()+ " Numero de conex:"+pool.getNumeroConexiones());
+        //Connection conection6 = pool.getConexion();
 
-            // Se deja de usar la 2
-            pool.dejarConexion(conection3);
-            Connection connection6 = pool.getConexion();
-            Connection connection7 = pool.getConexion();
-            Connection connection8 = pool.getConexion();
-            Connection connection0 = pool.getConexion();
-            Connection connection10 = pool.getConexion();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        //System.out.println("En uso:"+pool.getNumeroConexionesEnUso()+ " Numero de conex:"+pool.getNumeroConexiones());
     }
 }
