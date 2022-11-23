@@ -34,7 +34,7 @@
             "configPool":[
                 {
                     "poolSize": "4",
-                    "connectionDB": "baseDeDatos1"
+                    "connectionDB": "1"
                 }
             ]
 }

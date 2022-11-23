@@ -6,11 +6,14 @@ import java.sql.SQLException;
 
 public class ConexionBaseDatos {
     private boolean conexionActiva, enUso;
-    private Connection connection;
+    private Connection connection; private int claveBaseDatos;
 
-    public ConexionBaseDatos(String url, String usuario, String contrasena){
+    public ConexionBaseDatos(String url, String usuario, String contrasena, int claveBaseDatos){
         activarConexion(url, usuario, contrasena);
+        this.claveBaseDatos = claveBaseDatos;
     }
+
+    public ConexionBaseDatos(){}
 
     public void activarConexion(String url, String usuario, String contrasena){
         try {
@@ -44,5 +47,19 @@ public class ConexionBaseDatos {
 
     public boolean isEnUso() {
         return enUso;
+    }
+
+    public int getClaveBaseDatos() {
+        return claveBaseDatos;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        ConexionBaseDatos conexionBaseDatos = (ConexionBaseDatos)obj;
+        return this.claveBaseDatos == conexionBaseDatos.getClaveBaseDatos();
+    }
+
+    public boolean isNull(){
+        return false;
     }
 }

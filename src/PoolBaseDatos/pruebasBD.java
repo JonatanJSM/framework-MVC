@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 public class pruebasBD {
     public static void main(String[] args) {
-        ConexionBaseDatos conection = new ConexionBaseDatos("jdbc:mysql://localhost:3306/prubea","root","");
+        ConexionBaseDatos conection = new ConexionBaseDatos("jdbc:mysql://localhost:3306/prubea","root","",1);
         Statement st;
         ResultSet rs;
         try {
