@@ -136,6 +136,7 @@ public class Pool extends SwingWorker<Void, Void> {
             if(conexionesNoUsadas >= numeroConexionModificada){
                 System.out.println("Sí se cierran");
                 cerrarConeciones();
+                this.cancel(true);
             }else{
                 System.out.println("Se prepara cilco");
                 EnEspera = true;
@@ -150,6 +151,7 @@ public class Pool extends SwingWorker<Void, Void> {
                 if(conexionesNoUsadas >= numeroConexionModificada){
                     cerrarConeciones();
                         System.out.println("no debe entrar aqui");
+                    this.cancel(true);
                 }else{
                     EnEspera = true;
 
