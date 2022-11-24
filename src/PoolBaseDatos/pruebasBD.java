@@ -24,43 +24,62 @@ public class pruebasBD {
         Connection conection2 = pool.getConexion();
         Connection conection3 = pool.getConexion();
 
-        pool.setNumeroConexionModificada(2);
-        pool.execute();
+        //.-----------
+        //pool.setNumeroConexionModificada(2);
+        //pool.execute();
 
 
 
         //Cerrar conexion
-        //pool.cerrarConexion(conection2);
-        //pool.cerrarConexion(conection0);
+        pool.cerrarConexion(conection2);
+        pool.cerrarConexion(conection0);
 
         //Dejar de usar conexion
         pool.dejarConexion(conection1);
-        try{
-            Thread.sleep(8000);
-        }catch (InterruptedException e){}
-        //pool.dejarConexion(conection0);
+
+        //.-----------
+        //try{
+        //    Thread.sleep(8000);
+        //}catch (InterruptedException e){}
+
+
+        pool.dejarConexion(conection3);
+
+        System.out.println("En uso:"+pool.getNumeroConexionesEnUso()+ " Numero de conex:"+pool.getNumeroConexiones());
 
         // Se utiliza la que se dejó de usar
-        //Connection conection5 = pool.getConexion();
+        Connection conection5 = pool.getConexion();
+        System.out.println("En uso:"+pool.getNumeroConexionesEnUso()+ " Numero de conex:"+pool.getNumeroConexiones());
+        Connection conection6 = pool.getConexion();
+
+        //Connection conection7 = pool.getConexion();
         //Connection conection6 = pool.getConexion();
         //Connection conection7 = pool.getConexion();
 
-        try{
-            Thread.sleep(8000);
-        }catch (InterruptedException e){}
+        //.-----------
+        //try{
+        //    Thread.sleep(8000);
+        //}catch (InterruptedException e){}
+
 
         //Se cierran todas
         //pool.cerrarConexion(conection1);
         //pool.cerrarConexion(conection3);
         //pool.cerrarConexion(conection0);
-        //System.out.println("En uso:"+pool.getNumeroConexionesEnUso()+ " Numero de conex:"+pool.getNumeroConexiones());
+        System.out.println("En uso:"+pool.getNumeroConexionesEnUso()+ " Numero de conex:"+pool.getNumeroConexiones());
         //Connection conection6 = pool.getConexion();
 
         //System.out.println("En uso:"+pool.getNumeroConexionesEnUso()+ " Numero de conex:"+pool.getNumeroConexiones());
-        pool.cerrarConexion(conection0);
+        //pool.cerrarConexion(conection0);
         pool.cerrarConexion(conection1);
-        pool.cerrarConexion(conection2);
+        //pool.cerrarConexion(conection2);
         pool.cerrarConexion(conection3);
+
+        //try {
+          //  conection6.createStatement();
+        //} catch (SQLException e) {
+          //  throw new RuntimeException(e);
+        //}
 
     }
 }

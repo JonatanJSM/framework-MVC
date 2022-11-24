@@ -7,15 +7,38 @@ import org.apache.log4j.Logger;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 public class controlVistaEjemplo1 implements ActionListener {
     private vistaEjemplo1 prueba;
     private Logger log;
+    private Framework frame;
 
     public controlVistaEjemplo1(vistaEjemplo1 prueba) {
         this.prueba = prueba;
-
         this.prueba.getEnviarButton().addActionListener(this);
+        frame = new Framework();
+
+        Connection uno= frame.getConexion();
+        Connection dos= frame.getConexion();
+        Connection tres= frame.getConexion();
+        Connection cuatro= frame.getConexion();
+        frame.execute();
+        //.-----------
+        try{
+            Thread.sleep(10000);
+        }catch (InterruptedException e){}
+        frame.dejarConexion(uno);
+        frame.dejarConexion(tres);
+
+        try{
+            Thread.sleep(10000);
+        }catch (InterruptedException e){}
+
+        frame.cancarlar(dos);
+        frame.cancarlar(cuatro);
+        frame.cancarlar(tres);
+        frame.cancarlar(uno);
     }
 
     @Override
@@ -23,7 +46,6 @@ public class controlVistaEjemplo1 implements ActionListener {
         try{
             if(prueba.getEnviarButton() == e.getSource()){
                 System.out.println(prueba.getTextField1().getText());
-                Framework frame = new Framework();
                 log=frame.getLogger();
                 log.info("A");
                 Transaccion t = frame.getTransaccion("Login");

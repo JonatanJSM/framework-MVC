@@ -18,6 +18,10 @@ public class Pool extends SwingWorker<Void, Void> {
         this.numeroConexionModificada = numeroConexionModificada;
     }
 
+    public boolean isEnEspera() {
+        return EnEspera;
+    }
+
     public int getNumeroConexiones() {
         return numeroConexiones;
     }
@@ -27,12 +31,20 @@ public class Pool extends SwingWorker<Void, Void> {
     }
 
     private String[][] configuracionbd;
+    int baseDatoss;
     public Pool(int numeroConexiones, int baseDatos){
         DBParser dbParser = new DBParser();
         configuracionbd = dbParser.getConfiguracionDB();
         this.numeroConexiones = numeroConexiones;
-
+        baseDatoss = baseDatos;
         iniciarConexiones(configuracionbd[baseDatos-1][0], configuracionbd[baseDatos-1][1], configuracionbd[baseDatos-1][2]);
+    }
+
+    public void agregarConeciones(int indice){
+        for(int i=0;i<indice;i++){
+            conexiones.add(new ConexionBaseDatos(configuracionbd[baseDatoss-1][0], configuracionbd[baseDatoss-1][1], configuracionbd[baseDatoss-1][2],numeroConexiones));
+            numeroConexiones++;
+        }
     }
 
     public Connection getConexion(){
@@ -47,16 +59,17 @@ public class Pool extends SwingWorker<Void, Void> {
          }else{
              int i = 0;
              while(i < conexiones.size()){
+                 System.out.println("Se comienza en la"+ conexiones.get(i).getClaveBaseDatos());
                  if(conexiones.get(i).isConexionActiva() && !conexiones.get(i).isEnUso()){
                      result = conexiones.get(i).getConnection();
+                     System.out.println("La que se dio fue"+ conexiones.get(i).getClaveBaseDatos());
                      i = numeroConexiones + 20;
                      obtenerReultado = true;
                      numeroConexionesEnUso++;
                  }
                  i++;
-                 if(i>conexiones.size() && !obtenerReultado){
+                 if(i > conexiones.size() && !obtenerReultado){
                      i = 0;
-                     System.out.println("Ya me ciclé, ayuda");
                  }
              }
              return result;
@@ -66,7 +79,7 @@ public class Pool extends SwingWorker<Void, Void> {
     public void cerrarConexion(Connection connection){
         boolean conexionCerrada = true;
         int i = 0;
-        while(conexionCerrada){
+        while(conexionCerrada && i<conexiones.size()){
             if(conexiones.get(i).getConnectionTest().equals(connection)){
                 conexionCerrada = false;
                 numeroConexionesEnUso--;
@@ -87,7 +100,7 @@ public class Pool extends SwingWorker<Void, Void> {
     public void dejarConexion(Connection connection){
         boolean conexionCerrada = true;
         int i = 0;
-        while(conexionCerrada){
+        while(conexionCerrada && i<conexiones.size()){
             if(conexiones.get(i).getConnectionTest().equals(connection)){
                 conexionCerrada = false;
                 conexiones.get(i).dejarEnUso();
@@ -136,7 +149,7 @@ public class Pool extends SwingWorker<Void, Void> {
                 int conexionesNoUsadas = numeroConexiones - numeroConexionesEnUso;
                 if(conexionesNoUsadas >= numeroConexionModificada){
                     cerrarConeciones();
-                        System.out.println("Se cerraron las conexiones");
+                        System.out.println("no debe entrar aqui");
                 }else{
                     EnEspera = true;
 
@@ -146,6 +159,9 @@ public class Pool extends SwingWorker<Void, Void> {
                 Thread.sleep(500);
             }catch (InterruptedException e){}
         }
+
+        if(!isEnEspera())
+            this.cancel(true);
 
         if(isCancelled())
             System.out.println("Se detuvo por alguna razón desconocida");
