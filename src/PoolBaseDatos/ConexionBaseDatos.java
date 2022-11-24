@@ -64,10 +64,6 @@ public class ConexionBaseDatos {
         return claveBaseDatos;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        ConexionBaseDatos conexionBaseDatos = (ConexionBaseDatos)obj;
-        return this.claveBaseDatos == conexionBaseDatos.getClaveBaseDatos();
-    }
+
 
 }

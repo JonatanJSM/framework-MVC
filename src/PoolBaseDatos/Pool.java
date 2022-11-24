@@ -2,12 +2,21 @@ package PoolBaseDatos;
 
 import parseos.DBParser;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
-public class Pool {
+public class Pool extends SwingWorker<Void, Void> {
     private int numeroConexiones, numeroConexionesEnUso = 0;
     private final ArrayList<ConexionBaseDatos> conexiones = new ArrayList<>();
+
+    private boolean EnEspera = false;
+    private int numeroConexionModificada;
+
+    public void setNumeroConexionModificada(int numeroConexionModificada) {
+        this.numeroConexionModificada = numeroConexionModificada;
+    }
 
     public int getNumeroConexiones() {
         return numeroConexiones;
@@ -87,5 +96,65 @@ public class Pool {
             i++;
         }
     }
+
+    public void cerrarConeciones(){
+        int contador = 0;
+        for(int i = 0; i<conexiones.size(); i++){
+            if(contador == numeroConexionModificada){
+                EnEspera = false;
+                break;
+            }
+            if(conexiones.get(i).isConexionActiva() && !conexiones.get(i).isEnUso()){
+                conexiones.get(i).desactivarConexion();
+                numeroConexionesEnUso--;
+                numeroConexiones--;
+                contador++;
+            }
+        }
+    }
+
+    @Override
+    protected Void doInBackground() throws Exception {
+        if(numeroConexionModificada > numeroConexiones){
+            System.out.println("Es mayor el numero de conexiones que se quieren cerrar a las que existen");
+        }else {
+            System.out.println("Se hacen calculos");
+            int conexionesNoUsadas = numeroConexiones - numeroConexionesEnUso;
+            if(conexionesNoUsadas >= numeroConexionModificada){
+                System.out.println("Sí se cierran");
+                cerrarConeciones();
+            }else{
+                System.out.println("Se prepara cilco");
+                EnEspera = true;
+            }
+        }
+        while(EnEspera && (!isDone())){
+            System.out.println("Estoy en el ciclo");
+            if(numeroConexionModificada > numeroConexiones){
+                System.out.println("Es mayor el numero de conexiones que se quieren cerrar a las que existen");
+            }else {
+                int conexionesNoUsadas = numeroConexiones - numeroConexionesEnUso;
+                if(conexionesNoUsadas >= numeroConexionModificada){
+                    cerrarConeciones();
+                        System.out.println("Se cerraron las conexiones");
+                }else{
+                    EnEspera = true;
+
+                }
+            }
+            try{
+                Thread.sleep(500);
+            }catch (InterruptedException e){}
+        }
+
+        if(isCancelled())
+            System.out.println("Se detuvo por alguna razón desconocida");
+        return null;
+    }
+
+    public void done(){
+        System.out.println("Se canceló :c");
+    }
+
 
 }
