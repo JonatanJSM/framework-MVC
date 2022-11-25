@@ -48,10 +48,12 @@ public class Pool extends SwingWorker<Void, Void> {
     }
 
     public Connection getConexion(){
+
         Connection result = null;
         boolean obtenerReultado = false;
          if(numeroConexionesEnUso == numeroConexiones){
              try {
+                 System.out.println("Probandooo agregando 5");
                  throw new ExceptionConecionBaseDatos("Ya no hay conexiones");
              } catch (ExceptionConecionBaseDatos e) {
                  throw new RuntimeException(e);
@@ -72,6 +74,7 @@ public class Pool extends SwingWorker<Void, Void> {
                      i = 0;
                  }
              }
+
              return result;
          }
     }
@@ -118,8 +121,9 @@ public class Pool extends SwingWorker<Void, Void> {
                 break;
             }
             if(conexiones.get(i).isConexionActiva() && !conexiones.get(i).isEnUso()){
+                System.out.println("----------------------------------------------------------------");
                 conexiones.get(i).desactivarConexion();
-                numeroConexionesEnUso--;
+                //numeroConexionesEnUso--;
                 numeroConexiones--;
                 contador++;
             }

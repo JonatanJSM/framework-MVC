@@ -60,7 +60,7 @@ public class Framework extends SwingWorker<Void, Void> {
             String []configuracionPool2 = pool.getConfiguracionPoolDB();
             //System.out.println("El valor es"+configuracionPool2[0]);
             boolean bandera = false;
-            
+            System.out.println("En uso:"+this.pool.getNumeroConexionesEnUso()+ " Numero de conex:"+this.pool.getNumeroConexiones());
             if(!configuracionPool[0].equals(configuracionPool2[0])){
                 System.out.println("Hubo modificacion");
                 if(Integer.parseInt(configuracionPool[0])<Integer.parseInt(configuracionPool2[0])){

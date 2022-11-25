@@ -8,13 +8,14 @@ import org.apache.log4j.Logger;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class controlVistaEjemplo1 implements ActionListener {
     private vistaEjemplo1 prueba;
     private Logger log;
     private Framework frame;
 
-    public controlVistaEjemplo1(vistaEjemplo1 prueba) {
+    public controlVistaEjemplo1(vistaEjemplo1 prueba)  {
         this.prueba = prueba;
         this.prueba.getEnviarButton().addActionListener(this);
         frame = new Framework();
@@ -34,11 +35,13 @@ public class controlVistaEjemplo1 implements ActionListener {
         try{
             Thread.sleep(10000);
         }catch (InterruptedException e){}
+        System.out.println("Ya se dio la 5");
+        Connection cinco = frame.getConexion();
 
-        frame.cancarlar(dos);
-        frame.cancarlar(cuatro);
-        frame.cancarlar(tres);
-        frame.cancarlar(uno);
+        //frame.cancarlar(dos);
+        //frame.cancarlar(cuatro);
+        //frame.cancarlar(tres);
+        //frame.cancarlar(uno);
     }
 
     @Override
