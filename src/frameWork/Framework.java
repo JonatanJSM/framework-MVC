@@ -1,6 +1,7 @@
 package frameWork;
 
 import PoolBaseDatos.Pool;
+import lecturaJSON.FileFramework;
 import log4J.log4JManager;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -8,18 +9,17 @@ import parseos.MVCparser;
 import parseos.PoolDBParser;
 import parseos.log4Parser;
 
-import javax.swing.*;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Framework extends SwingWorker<Void, Void> {
+public class Framework {
 
     private Map<String, Transaccion> listaTransacciones = new HashMap<String, Transaccion>();
     private MVCparser lectorMCV;
     private log4Parser logConfigurator; private boolean modificacionPendienteJSON = false;
 
-    private Pool pool;
+    private Pool pool; private FileFramework file;
 
     String configuracionMVC[][];
     String[] configuracionPool;
@@ -42,6 +42,7 @@ public class Framework extends SwingWorker<Void, Void> {
         int tamanio = Integer.parseInt(configuracionPool[0]);
         int baseDatos = Integer.parseInt(configuracionPool[1]);
         this.pool = new Pool(tamanio,baseDatos);
+        file = new FileFramework(this.pool);
     }
 
     private void iniciarLogger(){
@@ -60,35 +61,8 @@ public class Framework extends SwingWorker<Void, Void> {
         }
     }
 
-    @Override
-    protected Void doInBackground() {
-        modificacionPendienteJSON = true;
-
-        while(modificacionPendienteJSON){
-            PoolDBParser poolDBParser = new PoolDBParser();
-            String[] configuracionPool2 = poolDBParser.getConfiguracionPoolDB();
-
-            if(!configuracionPool[0].equals(configuracionPool2[0])){
-                if(Integer.parseInt(configuracionPool[0])<Integer.parseInt(configuracionPool2[0])){
-                    int agregardas = Integer.parseInt(configuracionPool2[0])- Integer.parseInt(configuracionPool[0]);
-                    this.pool.agregarNuevasConexiones(agregardas);
-                    configuracionPool[0] = configuracionPool2[0];
-                }else {
-                    this.pool.setNuevoNumeroConexiones(Integer.parseInt(configuracionPool2[0]));
-                    this.pool.execute();
-                }
-            }
-            if (this.pool.isDone()){
-                configuracionPool[0] = configuracionPool2[0];
-            }
-            try{
-                Thread.sleep(500);
-            }catch (InterruptedException e){}
-
-        }
-        if(isCancelled())
-            System.out.println("Se detuvo por alguna razón desconocida la revision documenro");
-        return null;
+    public void execute(){
+        file.execute();
     }
 
     public Transaccion getTransaccion(String nombreTransaccion){

@@ -33,7 +33,7 @@
             ]
             "configPool":[
                 {
-                    "poolSize": "2",
+                    "poolSize": "5",
                     "connectionDB": "1"
                 }
             ]

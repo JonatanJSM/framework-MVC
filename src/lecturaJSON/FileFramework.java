@@ -5,17 +5,14 @@ import parseos.PoolDBParser;
 
 import javax.swing.*;
 
-public class File extends SwingWorker<Void, Void> {
+public class FileFramework extends SwingWorker<Void, Void> {
     private boolean modificacionPendienteJSON = false; private Pool pool;
     String[] configuracionPool;
 
-    public File(Pool pool){
+    public FileFramework(Pool pool){
         PoolDBParser poolDBParser = new PoolDBParser();
         configuracionPool = poolDBParser.getConfiguracionPoolDB();
-        int tamanio = Integer.parseInt(configuracionPool[0]);
-        int baseDatos = Integer.parseInt(configuracionPool[1]);
         this.pool = pool;
-
     }
 
     protected Void doInBackground() {

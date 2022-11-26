@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 public class Pool extends SwingWorker<Void, Void> {
-    private int numeroConexiones, numeroConexionesEnUso = 0, numeroConexionModificada, baseDatoss;
+    private int numeroConexiones, numeroConexionesEnUso = 0, numeroConexionModificada, baseDatoss, diferenciaNumeroConexiones;
     private final ArrayList<ConexionBaseDatos> conexiones = new ArrayList<>();
     private boolean EnEspera = false;
     private String[][] configuracionbd;
@@ -41,7 +41,7 @@ public class Pool extends SwingWorker<Void, Void> {
                  System.out.println("Ya no se pudo retornar una conexion");
                  throw new ExceptionConecionBaseDatos("Ya no hay conexiones");
              } catch (ExceptionConecionBaseDatos e) {
-                 throw new RuntimeException(e);
+
              }
          }else{
              int i = 0;
@@ -59,6 +59,7 @@ public class Pool extends SwingWorker<Void, Void> {
              }
              return conexionPedida;
          }
+         return conexionPedida;
     }
 
     public void cerrarConexion(Connection connection){
@@ -92,11 +93,12 @@ public class Pool extends SwingWorker<Void, Void> {
     private void cerrarConeciones(){
         int contador = 0;
         for(int i = 0; i<conexiones.size(); i++){
-            if(contador == numeroConexionModificada){
+            if(contador == diferenciaNumeroConexiones){
                 EnEspera = false;
                 break;
             }
             if(conexiones.get(i).isConexionActiva() && !conexiones.get(i).isEnUso()){
+                System.out.println("-------------------------------------");
                 conexiones.get(i).desactivarConexion();
                 numeroConexiones--;
                 contador++;
@@ -111,7 +113,9 @@ public class Pool extends SwingWorker<Void, Void> {
         }else {
             int conexionesNoUsadas = numeroConexiones - numeroConexionesEnUso;
             if(conexionesNoUsadas >= numeroConexionModificada){
+                diferenciaNumeroConexiones = (numeroConexiones - numeroConexionModificada);
                 cerrarConeciones();
+                numeroConexiones = numeroConexionModificada;
                 this.cancel(true);
             }else{
                 EnEspera = true;
@@ -123,7 +127,9 @@ public class Pool extends SwingWorker<Void, Void> {
             }else {
                 int conexionesNoUsadas = numeroConexiones - numeroConexionesEnUso;
                 if(conexionesNoUsadas >= numeroConexionModificada){
+                    diferenciaNumeroConexiones = (numeroConexiones - numeroConexionModificada);
                     cerrarConeciones();
+                    numeroConexiones = numeroConexionModificada;
                     this.cancel(true);
                 }else{
                     EnEspera = true;
