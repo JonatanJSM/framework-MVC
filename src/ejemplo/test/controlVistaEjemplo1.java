@@ -4,11 +4,10 @@ import ejemplo.vista.vistaEjemplo1;
 import frameWork.Framework;
 import frameWork.Transaccion;
 import org.apache.log4j.Logger;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.SQLException;
+
 
 public class controlVistaEjemplo1 implements ActionListener {
     private vistaEjemplo1 prueba;
@@ -29,8 +28,8 @@ public class controlVistaEjemplo1 implements ActionListener {
         try{
             Thread.sleep(10000);
         }catch (InterruptedException e){}
-        frame.dejarConexion(uno);
-        frame.dejarConexion(tres);
+        frame.dejarUsoConexion(uno);
+        frame.dejarUsoConexion(tres);
 
         try{
             Thread.sleep(10000);
@@ -38,10 +37,10 @@ public class controlVistaEjemplo1 implements ActionListener {
         System.out.println("Ya se dio la 5");
         Connection cinco = frame.getConexion();
 
-        //frame.cancarlar(dos);
-        //frame.cancarlar(cuatro);
-        //frame.cancarlar(tres);
-        //frame.cancarlar(uno);
+        frame.cancelarConexion(dos);
+        frame.cancelarConexion(cuatro);
+        frame.cancelarConexion(tres);
+        frame.cancelarConexion(uno);
     }
 
     @Override
