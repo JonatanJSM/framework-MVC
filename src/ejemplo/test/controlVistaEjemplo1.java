@@ -7,6 +7,9 @@ import org.apache.log4j.Logger;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 
 public class controlVistaEjemplo1 implements ActionListener {
@@ -34,8 +37,8 @@ public class controlVistaEjemplo1 implements ActionListener {
         try{
             Thread.sleep(10000);
         }catch (InterruptedException e){}
-        System.out.println("Ya se dio la 5");
-        Connection cinco = frame.getConexion();
+        //System.out.println("Ya se dio la 5");
+        //Connection cinco = frame.getConexion();
 
 
         try{
@@ -56,6 +59,21 @@ public class controlVistaEjemplo1 implements ActionListener {
                 log.info("A");
                 Transaccion t = frame.getTransaccion("Login");
                 t.execute(prueba.getTextField1().getText());
+
+                Connection connection5 = frame.getConexion();
+                Statement st;
+                ResultSet rs;
+                try {
+                    st = connection5.createStatement();
+                    rs = st.executeQuery("select * from arquitectura");
+                    System.out.println("Se prueba la conexion");
+                    while(rs.next()){
+                        System.out.println(rs.getString("Cadena"));
+                    }
+                } catch (SQLException ev) {
+                    throw new RuntimeException(ev);
+                }
+                frame.cancelarConexion(connection5);
             }
         }catch (NullPointerException exc){
             System.out.println("La transacción es inexistente"+exc.getMessage());
