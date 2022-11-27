@@ -26,14 +26,28 @@ public class PoolDBParser{
         }
     }
 
-    private void extraerConfiguracionDB(){
+    private void extraerConfiguracionDB() throws MissingAttributeException {
         configuracionPoolDB = new String[2];
         configuracionPoolDB[0]= (String) PoolConfigurationJSON.get("poolSize");
         configuracionPoolDB[1]= (String) PoolConfigurationJSON.get("connectionDB");
+        if(!verificarPool()){
+            throw new MissingAttributeException("El tamaño de pools es inválido");
+        }
     }
 
     public String[] getConfiguracionPoolDB(){
         return configuracionPoolDB;
+    }
+
+    public boolean verificarPool(){
+        String s = configuracionPoolDB[0];
+        for(int i=0;i<s.length()-2;i++) {
+            char c=s.charAt(i);
+            if (c < '0' || c > '9') {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

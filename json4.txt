@@ -15,7 +15,7 @@
             ],
             "configLOG4j": [
                 {
-                    "Active": "False"
+                    "Active": "True"
                     "FileSize": "1KB"
                 }
             ]
