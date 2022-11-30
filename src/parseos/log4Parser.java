@@ -31,14 +31,30 @@ public class log4Parser {
         }
     }
 
-    private void extraerConfiguración(){
+    private void extraerConfiguración() throws MissingAttributeException {
         configuracion = new String[2];
         configuracion[0]= (String) configLog4J.get("Active");
         if(configuracion[0].equals("True")){
             configuracion[1]=(String) configLog4J.get("FileSize");
+            if(!verificarTamaño()){
+                throw new MissingAttributeException("El tamaño de archivo para logs es inválido.'/n'Recuerde usar un número seguido de 'KB'");
+            }
         }else{
             configuracion[1]="0";
         }
+    }
+
+    public boolean verificarTamaño(){
+        String s = configuracion[1];
+        for(int i=0;i<s.length()-2;i++) {
+            char c=s.charAt(i);
+            if (c < '0' || c > '9') {
+            }
+        }
+        if(!s.contains("KB")){
+            return false;
+        }
+        return true;
     }
 
     public String[] getConfiguracion(){

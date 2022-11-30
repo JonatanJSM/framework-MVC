@@ -15,10 +15,26 @@
             ],
             "configLOG4j": [
                 {
-                    "Active": "False"
+                    "Active": "True"
                     "FileSize": "1KB"
                 }
             ]
-            "configPool":[]
-            "configBD":[]
+            "configBD": [
+                {
+                    "urlDB": "jdbc:mysql://localhost:3306/prubea",
+                    "usuarioDB": "root",
+                    "contrasenaDB": ""
+                }
+                {
+                    "urlDB": "jdbc:mysql://localhost:3306/prubea",
+                    "usuarioDB": "root",
+                    "contrasenaDB": ""
+                }
+            ]
+            "configPool":[
+                {
+                    "poolSize": "4",
+                    "connectionDB": "1"
+                }
+            ]
 }
