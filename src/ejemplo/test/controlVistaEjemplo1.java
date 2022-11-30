@@ -56,7 +56,7 @@ public class controlVistaEjemplo1 implements ActionListener {
             if(prueba.getEnviarButton() == e.getSource()){
                 System.out.println(prueba.getTextField1().getText());
                 log=frame.getLogger();
-                log.info("A");
+                log.info("Se oprime boton");
                 Transaccion t = frame.getTransaccion("Login");
                 t.execute(prueba.getTextField1().getText());
 
