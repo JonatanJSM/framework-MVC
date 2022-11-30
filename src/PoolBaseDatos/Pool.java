@@ -33,16 +33,11 @@ public class Pool extends SwingWorker<Void, Void> {
         System.out.println("Se agregaron correctamente las conexiones");
     }
 
-    public Connection getConexion(){
+    public Connection getConexion() throws ExceptionConecionBaseDatos{
         Connection conexionPedida = null;
         boolean obtenerReultado = false;
          if(numeroConexionesEnUso == numeroConexiones){
-             try {
-                 System.out.println("Ya no se pudo retornar una conexion");
-                 throw new ExceptionConecionBaseDatos("Ya no hay conexiones");
-             } catch (ExceptionConecionBaseDatos e) {
-
-             }
+             throw new ExceptionConecionBaseDatos("Ya no hay conexiones");
          }else{
              int i = 0;
              while(i < conexiones.size()){
@@ -59,7 +54,7 @@ public class Pool extends SwingWorker<Void, Void> {
              }
              return conexionPedida;
          }
-         return conexionPedida;
+
     }
 
     public void cerrarConexion(Connection connection){
@@ -72,6 +67,7 @@ public class Pool extends SwingWorker<Void, Void> {
                 numeroConexiones--;
                 System.out.println(i);
                 conexiones.get(i).desactivarConexion();
+                conexiones.remove(i);
             }
             i++;
         }
@@ -100,6 +96,7 @@ public class Pool extends SwingWorker<Void, Void> {
             if(conexiones.get(i).isConexionActiva() && !conexiones.get(i).isEnUso()){
                 System.out.println("-------------------------------------");
                 conexiones.get(i).desactivarConexion();
+                conexiones.remove(i);
                 numeroConexiones--;
                 contador++;
             }

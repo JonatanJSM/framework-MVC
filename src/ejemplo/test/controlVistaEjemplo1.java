@@ -29,25 +29,25 @@ public class controlVistaEjemplo1 implements ActionListener {
         frame.execute();
         //.-----------
         try{
-            Thread.sleep(10000);
+            Thread.sleep(8000);
         }catch (InterruptedException e){}
         frame.dejarUsoConexion(uno);
         frame.dejarUsoConexion(tres);
 
         try{
-            Thread.sleep(10000);
+            Thread.sleep(8000);
         }catch (InterruptedException e){}
-        //System.out.println("Ya se dio la 5");
-        //Connection cinco = frame.getConexion();
+        System.out.println("Ya se dio la 5");
+        Connection cinco = frame.getConexion();
 
 
         try{
-            Thread.sleep(10000);
+            Thread.sleep(8000);
         }catch (InterruptedException e){}
         frame.cancelarConexion(dos);
         frame.cancelarConexion(cuatro);
-        frame.cancelarConexion(tres);
-        frame.cancelarConexion(uno);
+        //frame.cancelarConexion(tres);
+        //frame.cancelarConexion(uno);
     }
 
     @Override

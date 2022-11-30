@@ -1,5 +1,6 @@
 package frameWork;
 
+import PoolBaseDatos.ExceptionConecionBaseDatos;
 import PoolBaseDatos.Pool;
 import lecturaJSON.FileFramework;
 import log4J.log4JManager;
@@ -74,7 +75,12 @@ public class Framework {
     }
 
     public Connection getConexion(){
-        return this.pool.getConexion();
+        try {
+            return this.pool.getConexion();
+        } catch (ExceptionConecionBaseDatos e) {
+            System.out.println("Ya no se pudo retornar una conexion");
+        }
+        return null;
     }
 
     public void dejarUsoConexion(Connection con){
